@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренировочный дневник</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-content">
+        <h2>Тренировочный дневник</h2>
+
+        <!-- Вкладки -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('days')">Дни</button>
+            <button class="tab" onclick="showTab('exercises')">Упражнения</button>
+            <button class="tab" onclick="showTab('history')">История</button>
+        </div>
+
+        <!-- Экран: Дни -->
+        <div id="days" class="tab-content active">
+            <h3>Мои дни</h3>
+            <div class="day-creator">
+                <input type="text" id="newDay" placeholder="Название нового дня">
+                <button onclick="createDay()">Создать</button>
+            </div>
+            <div id="dayList" class="day-list"></div>
+        </div>
+
+        <!-- Экран: Упражнения -->
+        <div id="exercises" class="tab-content">
+            <h3 id="exerciseDayTitle">Упражнения</h3>
+            <input type="text" id="exercise" placeholder="Название упражнения">
+            <input type="number" id="sets" placeholder="Количество подходов">
+            <input type="number" id="reps" placeholder="Количество повторений">
+            <input type="number" id="weight" placeholder="Вес (кг)">
+            <div class="button-group">
+                <button onclick="addExercise()">Добавить</button>
+                <button onclick="clearDay()">Очистить</button>
+                <button onclick="sendData()">Отправить</button>
+                <button onclick="syncData()">Sync</button>
+            </div>
+            <div id="exerciseList" class="exercise-list"></div>
+        </div>
+
+        <!-- Экран: История -->
+        <div id="history" class="tab-content">
+            <h3>История тренировок</h3>
+            <div id="historyList" class="exercise-list"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для редактирования -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Редактировать упражнение</h3>
+            <input type="text" id="editExercise" placeholder="Название упражнения">
+            <input type="number" id="editSets" placeholder="Количество подходов">
+            <input type="number" id="editReps" placeholder="Количество повторений">
+            <input type="number" id="editWeight" placeholder="Вес (кг)">
+            <div class="button-group">
+                <button onclick="saveExercise()">Сохранить</button>
+                <button onclick="closeModal()">Отменить</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
